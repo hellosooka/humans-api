@@ -7,7 +7,9 @@ import { HumanModule } from './human/human.module';
 import { TagModule } from './tag/tag.module';
 import { FactModule } from './fact/fact.module';
 import { GroupModule } from './group/group.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypegooseModule } from 'nestjs-typegoose';
+import { getMongoConfig } from './configs/mongo.config';
 
 @Module({
   imports: [
@@ -18,6 +20,11 @@ import { ConfigModule } from '@nestjs/config';
     FactModule, 
     GroupModule,
     ConfigModule.forRoot(),
+    TypegooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: getMongoConfig
+    })
     
   ],
   controllers: [AppController],
