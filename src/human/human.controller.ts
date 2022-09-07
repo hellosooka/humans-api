@@ -1,11 +1,21 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post } from '@nestjs/common';
+import { ModelType, DocumentType } from '@typegoose/typegoose/lib/types';
 import { addFactToHumanDto } from './dto/add-fact.dto';
 import { addTagToHumanDto } from './dto/add-tag.dto';
+import { CreateHumanDto } from './dto/create-human.dto';
+import { HumanModel } from './human.model';
 
 @Controller('human')
 export class HumanController {
 	
+	constructor(@Inject(HumanModel) private readonly humanModel: ModelType<HumanModel>) {}
+
 	// * Work with human
+
+	@Post()
+	async create(dto: CreateHumanDto): Promise<DocumentType<HumanModel>> {
+		return this.humanModel.create()
+	}
 
 	@Get(':id')
 	async get(@Param('id') id:string ) {
@@ -35,7 +45,7 @@ export class HumanController {
 	}
 
 	// * Work with fact
-	
+
 	@Post(':id/fact')
 	async addFact(@Param('id') id: string, @Body() dto: addFactToHumanDto ) {
 		
