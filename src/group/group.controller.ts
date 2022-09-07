@@ -5,9 +5,15 @@ import { CreateGroupDto } from './dto/create-group.dto';
 @Controller('group')
 export class GroupController {
 
+	//Work with group
 	@Post('create') //Add group
 	async create(@Body() dto: CreateGroupDto) {
 		
+	}
+
+	@Get('allGroup') //get all group
+	async getAllGroup() {
+
 	}
 	
 	@Get(':id') //Get group
@@ -15,6 +21,7 @@ export class GroupController {
 		
 	}
 	
+	//Work with human
 	@Post(':id/addHuman') //Add human in Group
 	async addHuman(@Param('id') id: string ,@Body() dto: addHumanDto ) {
 

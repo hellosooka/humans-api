@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { HumanModel } from './human.model';
+import { HumanController } from './human.controller';
 
 @Module({
 	imports: [
@@ -11,7 +12,8 @@ import { HumanModel } from './human.model';
 					collection: 'Human'
 				}
 			}])
-	]
+	],
+	controllers: [HumanController]
 })
 
 export class HumanModule {}
