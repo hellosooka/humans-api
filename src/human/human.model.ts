@@ -12,7 +12,7 @@ export class HumanModel extends TimeStamps {
 	lastname: string
 	
 	@prop(() => [Number])
-	tagsId: [number]
+	tagsId: number[]
 	@prop(() => [Number])
-	factsId: [number]
+	factsId: number[]
 }

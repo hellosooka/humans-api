@@ -8,5 +8,5 @@ export class PageModel extends TimeStamps {
 	about: string
 
 	@prop(() => [Number])
-	groupsId: [number]
+	groupsId: number[]
 }
