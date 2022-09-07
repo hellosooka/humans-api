@@ -5,6 +5,8 @@ import { GroupModel } from './group.model';
 @Injectable()
 export class GroupService {
 	constructor(@Inject(GroupModel) private readonly groupModel: ModelType<GroupModel> ) {
+
+
 		
 	}
 }
